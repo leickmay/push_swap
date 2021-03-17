@@ -32,6 +32,8 @@ void	fill_stack(char **argv, t_stack *stack)
 void	init_stack(t_stack *stack, int argc, char **argv)
 {
 	stack->b = malloc(sizeof(int) * (argc - 1));
+	if (!stack->b)
+		ft_error();
 	stack->size_a = argc - 1;
 	stack->size_b = 0;
 	stack->size_list = 0;
