@@ -5,58 +5,119 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/17 16:12:18 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/17 16:29:08 by leickmay         ###   ########lyon.fr   */
+/*   Created: 2021/03/12 13:32:23 by leickmay          #+#    #+#             */
+/*   Updated: 2021/03/18 16:46:16 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-void	ft_error(void)
+/**********DEBUG********************/
+#include <stdio.h>
+/**********DEBUG********************/
+/**********DEBUG********************/
+void	display_stack(t_stack *stack)
 {
-	ft_putstr_fd("Error\n", 2);
-	exit(0);
-}
-
-void	get_args(int argc, char **argv, t_stack *stack)
-{
-	
-}
-
-void	fill_stack(char **argv, t_stack *stack)
-{
-	int		i;
-
-	i = 0;
+	int i = 0;
+	printf("pile a :\n");
 	while (i < stack->size_a)
 	{
-		check_argv(argv[i + 1]);
-		stack->a[i] = ft_atoi(argv[i + 1]);
+		printf("i : %d -> %d\n", i, stack->a[i]);
 		i++;
 	}
-	check_double(stack);
+	printf("pile b :\n");
+	i = 0;
+	while (i < stack->size_b)
+	{
+		printf("i : %d -> %d\n", i, stack->b[i]);
+		i++;
+	}
 }
+/**********DEBUG********************/
 
-void	init_stack(t_stack *stack, int argc, char **argv)
+char	**first_new_tab(char *line)
 {
-	stack->b = malloc(sizeof(int) * (argc - 1));
-	if (!stack->b)
+	char	**new_tab;
+
+	new_tab = malloc(sizeof(char *) * 2);
+	if (!new_tab)
 		ft_error();
-	stack->a = malloc(sizeof(int) * (argc - 1));
-	if (!stack->a)
+	new_tab[0] = ft_strdup(line);
+	new_tab[1] = malloc(sizeof(char));
+	if (!new_tab[1])
 		ft_error();
-	stack->size_a = argc - 1;
-	stack->size_b = 0;
-	stack->size_list = 0;
-	fill_stack(argv, stack);
+	new_tab[1][0] = '\0';
+	return (new_tab);
 }
 
+void	ft_free_tab(char **op, int i)
+{
+	while (i >= 0)
+	{
+		free(op[i]);
+		i--;
+	}
+	free(op);
+}
+
+//char	**ft_checker_strjoin(char **op, char *line, int i)
+//{
+//	char	**new_tab;
+//	int		j;
+//
+//	if (i == 0)
+//		new_tab = first_new_tab(line);
+//	else
+//	{
+//		new_tab = malloc(sizeof(char *) * (i + 2));
+//		j = 0;
+//		while (j < i)
+//		{
+//			new_tab[j] = ft_strdup(op[j]);
+//			j++;
+//		}
+//		new_tab[j] = ft_strdup(line);
+//		new_tab[j + 1] = malloc(sizeof(char));
+//		if (!new_tab[j + 1])
+//			ft_error();
+//		new_tab[j + 1][0] = '\0';
+//		ft_free_tab(op, i);
+//	}
+//	return (new_tab);
+//}
+//
+//void	get_operations(t_stack *stack)
+//{
+//	char	*line;
+//	char	**op;
+//
+//	while (get_next_line(1, &line))
+//	{
+//		check_line_chars(line);
+//		op = ft_checker_strjoin(op, line, stack->size_list);
+//		free(line);
+//		stack->size_list++;
+//	}
+//	free(line);
+//	stack->op = op;
+//}
 
 int	main(int argc, char **argv)
 {
 	t_stack	stack;
 
+	//printf("%s\n", argv[1]);
+	//printf("argc : %d\n", argc);
 	if (argc == 1)
-		return (0);
+		exit(0);
 	init_stack(&stack, argc, argv);
+	display_stack(&stack);
+	sort_instructions(&stack);
+	//get_operations(&stack);
+	//make_operations(&stack);
+	display_stack(&stack);
+	stack.sorted = check_sorted(&stack);
+	printf("is sorted : %d\n", stack.sorted);
+	free(stack.a);
+	free(stack.b);
+	return (0);
 }

@@ -1,34 +1,50 @@
-HEADER		= includes/checker.h
+HEADER		=	includes/checker.h includes/push_swap.h
 
 SRCS_C		=	srcs_checker/check_args.c srcs_checker/main.c srcs_checker/operations.c \
 				srcs_checker/operations_bis.c srcs_checker/operations_ter.c srcs_checker/stack.c
 
+SRCS_P		=	srcs_push_swap/check_args.c srcs_push_swap/main.c srcs_push_swap/operations.c \
+				srcs_push_swap/operations_bis.c srcs_push_swap/operations_ter.c srcs_push_swap/stack.c \
+				srcs_push_swap/sort.c
+
+
 LIBFT		=	libft.a
 
-NAME_C		=	checker
+NAME		=	checker
+
+NAME_P		=	push_swap
 
 CC			=	gcc
 
 CFLAGS		=	-Wall -Werror -Wextra
 
 OBJS_C		=	$(SRCS_C:.c=.o)
+
+OBJS_P		=	$(SRCS_P:.c=.o)
+
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
-$(NAME_C):	$(OBJS_C) $(HEADER)
+$(NAME):	$(OBJS_C) $(OBJS_P) $(HEADER)
 			$(MAKE) -C ./libft
 			cp libft/libft.a .
-			$(CC) -o $(NAME_C) $(SRCS_C) $(LIBFT)
+			$(CC) -o $(NAME) $(SRCS_C) $(LIBFT)
+			$(CC) -o $(NAME_P) $(SRCS_P) $(LIBFT)
 
-all :	$(NAME_C)
+#$(NAME_P):	$(OBJS_P) $(HEADER_P)
+#			$(MAKE) -C ./libft
+#			cp libft/libft.a .
+#			$(CC) -o $(NAME_P) $(SRCS_P) $(LIBFT)
+
+all :	$(NAME)
 
 clean : 
 		$(MAKE) clean -C ./libft
-		rm -rf $(OBJS_C)
+		rm -rf $(OBJS_C) $(OBJS_P)
 
 fclean :
 		$(MAKE) fclean -C ./libft
-		rm -rf $(OBJS_C) libft.a checker
+		rm -rf $(OBJS_C) libft.a checker $(OBJS_P) push_swap
 	
 re :	fclean all
 
