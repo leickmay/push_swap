@@ -6,7 +6,7 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:15:25 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/18 16:24:25 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 12:47:48 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,11 @@ void	make_operations(t_stack *stack);
 void	which_action(char *line, t_stack *stack);
 void	fill_stack(char **argv, t_stack *stack);
 void	init_stack(t_stack *stack, int argc, char **argv);
+void	init_stack_args(t_stack *stack, char *argv);
 int	check_sorted(t_stack *stack);
 int	check_sorted_a(t_stack *stack);
 int	check_sorted_b(t_stack *stack);
+int	check_sorted_b_reversed(t_stack *stack);
 void	sort_instructions(t_stack *stack);
 
 #endif

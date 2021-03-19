@@ -6,7 +6,7 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 15:06:11 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/18 16:24:07 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 11:22:41 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,3 +129,16 @@ int	check_sorted_b(t_stack *stack)
 	return (1);
 }
 
+int	check_sorted_b_reversed(t_stack *stack)
+{
+	int	i;
+
+	i = 0;
+	while (i < stack->size_b - 1)
+	{
+		if (stack->b[i] < stack->b[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
+}

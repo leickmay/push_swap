@@ -6,7 +6,7 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:32:23 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/18 16:46:16 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 14:40:48 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,14 +109,23 @@ int	main(int argc, char **argv)
 	//printf("argc : %d\n", argc);
 	if (argc == 1)
 		exit(0);
-	init_stack(&stack, argc, argv);
-	display_stack(&stack);
+	//else if (argc == 2)
+		//init_stack_args(&stack, argv[1]);
+	//else
+		init_stack(&stack, argc, argv);
+	//display_stack(&stack);
+	//int i = 0;
+	//while (i < stack.size_a)
+	//{
+	//	printf("%d\n", stack.a[i]);
+	//	i++;
+	//}
 	sort_instructions(&stack);
 	//get_operations(&stack);
 	//make_operations(&stack);
-	display_stack(&stack);
+	//display_stack(&stack);
 	stack.sorted = check_sorted(&stack);
-	printf("is sorted : %d\n", stack.sorted);
+	//printf("is sorted : %d\n", stack.sorted);
 	free(stack.a);
 	free(stack.b);
 	return (0);

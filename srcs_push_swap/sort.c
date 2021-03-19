@@ -6,7 +6,7 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 11:17:57 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/18 16:48:01 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/19 16:05:57 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,6 @@ int	rotate_bigger_end(t_stack *stack)
 	{
 		ft_putstr("ra\n");
 		which_action("ra", stack);
-	}
-	int j = 0;
-	printf("--PILE A--\n");
-	while (j < stack->size_a)
-	{
-		printf("j : %d -> %d\n", j, stack->a[j]);
-		j++;
 	}
 	return (r);
 }
@@ -102,6 +95,29 @@ void	three_sort_algo(t_stack *stack)
 
 void	three_sort_algo_b(t_stack *stack)
 {
+	//1    2     sb rrb
+	//2    1
+	//3    3
+//
+	//2   3  rrb
+	//1   2
+	//3   1
+//
+	//3     
+	//2      
+	//1      
+//
+	//3  2  3  rrb sb
+	//1  3  2
+	//2  1  1
+//
+	//2  3  sb
+	//3  2
+	//1  1
+//
+	//1  3 rb
+	//3  2
+	//2  1
 	if (stack->size_b == 2)
 	{
 		if (stack->b[0] > stack->b[1])
@@ -109,22 +125,21 @@ void	three_sort_algo_b(t_stack *stack)
 	}
 	if (stack->size_b == 3)
 	{
-		while (check_sorted_b(stack) == 0)
+		while (check_sorted_b_reversed(stack) == 0)
 		{
-			if (stack->b[0] > stack->b[1] && stack->b[0] > stack->b[2])
+			if (stack->b[0] < stack->b[1] && stack->b[0] < stack->b[2] && \
+			stack->b[1] > stack->b[2])
 				which_action("rb", stack);
-			if (stack->b[0] > stack->b[1] && stack->b[1] < stack->b[2])
-				which_action("sb", stack);
-			if (stack->b[0] > stack->b[1] && stack->b[1] > stack->b[2] && \
+			if (stack->b[0] > stack->b[1] && stack->b[1] < stack->b[2] && \
+			stack->b[0] < stack->b[2])
+				which_action("rrb", stack);
+			if (stack->b[0] < stack->b[1] && stack->b[1] > stack->b[2] && \
 			stack->b[0] > stack->b[2])
 				which_action("sb", stack);
-			if (stack->b[0] < stack->b[1] && stack->b[2] < stack->b[1] && \
-			stack->b[2] < stack->b[0])
-				which_action("rrb", stack);
-			if (stack->b[0] < stack->b[1] && stack->b[2] < stack->b[1] && \
-			stack->b[2] > stack->b[0])
-				which_action("rb", stack);
-			check_sorted_b(stack);
+			if (stack->b[0] < stack->b[1] && stack->b[0] < stack->b[2] && \
+			stack->b[1] < stack->b[2])
+				which_action("sb", stack);
+			check_sorted_b_reversed(stack);
 		}
 	}
 }
@@ -184,41 +199,112 @@ void	push_smallest_b(t_stack *stack, int smallest)
 	which_action("pb", stack);
 }
 
-void	five_sort_algo(t_stack *stack)
+void	six_sort_algo(t_stack *stack)
 {
-	//1
-	//2
-	//3
-	//4
-	//5
-//
-	//2
-	//1
-	//3
-	//4
-	//5
-//
-	//5   2
-	//2   4
-	//4   3
-	//3   1
-	//1
-	
 	int	smallest;
-	
+
 	smallest = find_smallest(stack);
 	push_smallest_b(stack, smallest);
 	smallest = find_smallest(stack);
 	push_smallest_b(stack, smallest);
-	three_sort_algo(stack);
-	two_reverse_sort_b(stack);
-	which_action("pa", stack);
-	which_action("pa", stack);
+	if (stack->size_a == 4)
+	{
+		smallest = find_smallest(stack);
+		push_smallest_b(stack, smallest);
+		three_sort_algo(stack);
+		three_sort_algo_b(stack);
+		which_action("pa", stack);
+		which_action("pa", stack);
+		which_action("pa", stack);
+	}
+	if (stack->size_b == 2)
+	{
+		three_sort_algo(stack);
+		two_reverse_sort_b(stack);
+		which_action("pa", stack);
+		which_action("pa", stack);
+	}
+}
+
+int	sort_pivot(t_stack *stack, int pivot)
+{
+	int	i;
+
+	i = 0;
+	while (i < stack->size_a)
+	{
+		if (i == pivot)
+			i++;
+		if (pivot < 0)
+			pivot = stack->size_a - 1;
+		printf("pivot %d : %d\n", pivot, stack->a[pivot]);
+		if (stack->a[0] <= stack->a[pivot])
+		{
+			which_action("ra", stack);
+			pivot--;
+
+		}
+		else
+		{
+			which_action("pb", stack);
+			pivot--;
+		}
+		i++;
+	}
+	return (pivot);
 }
 
 void	ten_sort_algo(t_stack *stack)
 {
-	
+	int	pivot;
+	int	i;
+
+	i = 0;
+	pivot = stack->size_a - 1;
+	printf("pivot : %d\n", stack->a[pivot]);
+	pivot = sort_pivot(stack, pivot);
+	if (pivot >= stack->size_a / 2)
+	{
+		while (pivot < stack->size_a - 1)
+		{
+			which_action("rra", stack);
+			pivot++;
+		}
+	}
+	else
+	{
+		while (pivot >= 0)
+		{
+			which_action("ra", stack);
+			pivot--;
+		}
+		
+	}
+	i = 0;
+	while (stack->size_b > 0)
+	{
+		which_action("pa", stack);
+		i++;
+	}
+	while (i > 0)
+	{
+		which_action("ra", stack);
+		i--;
+	}
+	int a = 0;
+	printf("PILE A-----\n");
+	while (a < stack->size_a)
+	{
+		printf("a : %d -> %d\n", a, stack->a[a]);
+		a++;
+	}
+	int b = 0;
+	printf("PILE B-----\n");
+	while (b < stack->size_b)
+	{
+		printf("b : %d -> %d\n", b, stack->b[b]);
+		b++;
+	}
 }
 
 void	sort_instructions(t_stack *stack)
@@ -228,12 +314,20 @@ void	sort_instructions(t_stack *stack)
 
 	i = 0;
 	p = 0;
+	int a = 0;
+	printf("PILE A----- avant algo\n");
+	while (a < stack->size_a)
+	{
+		printf("a : %d -> %d\n", a, stack->a[a]);
+		a++;
+	}
 	if (stack->size_a <= 3)
 		three_sort_algo(stack);
-	else if (stack->size_a <= 5 && stack->size_a > 3)
-		five_sort_algo(stack);
-	else if (stack->size_a > 5 && stack->size_a <= 10)
+	else if (stack->size_a <= 6 && stack->size_a > 3)
+		six_sort_algo(stack);
+	else if (stack->size_a <= 10)
 		ten_sort_algo(stack);
+
 	//while (p < stack->size_a - 1)
 	//{
 	//	printf("sort : %d  -  %d\n", stack->a[i], stack->a[stack->size_a - 1 - p]);
