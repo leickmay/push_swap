@@ -6,7 +6,7 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:15:25 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/20 14:51:05 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 14:54:42 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,32 @@ typedef struct s_stacks
 	int		*big_tab;
 	int		*small_tab;
 }				t_stack;
+
+typedef struct s_pos
+{
+	int	min_pos;
+	int	min_value;
+	int	min_dist_bottom;
+	int	min_closest;
+	int	max_pos;
+	int	max_value;
+	int	max_dist_bottom;
+	int	max_closest;
+}				t_pos;
+
+typedef struct s_pos_b
+{
+	int	min_pos;
+	int	min_value;
+	int	min_dist_bottom;
+	int	min_closest;
+	int	max_pos;
+	int	max_value;
+	int	max_dist_bottom;
+	int	max_closest;
+	int	closest_value;
+	int	closest_pos;
+}				t_pos_b;
 
 /*****DEBUG*****/
 void	afficher_piles(t_stack *stack);
@@ -68,10 +94,15 @@ void	build_big_tab_find_biggest(int	*tab, int size, t_stack *stack);
 int	*ft_copy_int_tab(t_stack *stack);
 void	build_big_tab(t_stack *stack);
 int		find_biggest_2(t_stack *stack, int i);
+int		find_smallest_b(t_stack *stack);
+int		find_biggest_b(t_stack *stack);
 void	ten_sort_algo(t_stack *stack);
 int		find_smallest(t_stack *stack);
 int		find_biggest(t_stack *stack);
 void	sort_instructions(t_stack *stack);
 void	two_reverse_sort_b(t_stack *stack);
+void	min_max_algo(t_stack *stack);
+void	init_t_pos_a(t_stack *stack, t_pos *pos);
+void	init_t_pos_b(t_stack *stack, t_pos_b *pos);
 
 #endif

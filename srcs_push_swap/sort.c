@@ -6,7 +6,7 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 11:17:57 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/20 15:27:21 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 14:37:19 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,41 @@ int		find_biggest(t_stack *stack)
 	return (big);
 }
 
+int		find_smallest_b(t_stack *stack)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (j < stack->size_b)
+	{
+		if (stack->b[i] > stack->b[j])
+		{
+			i++;
+			j = 0;
+		}
+		j++;
+	}
+	return (i);
+}
+
+int		find_biggest_b(t_stack *stack)
+{
+	int	i;
+	int	big;
+
+	i = 0;
+	big = 0;
+	while (i < stack->size_b)
+	{
+		if (stack->b[i] > stack->b[big])
+			big = i;
+		i++;
+	}
+	return (big);
+}
+
 void	big_range_algo(t_stack *stack)
 {
 	int	quarter;
@@ -120,14 +155,15 @@ afficher_piles(stack);
 
 void	sort_instructions(t_stack *stack)
 {
-	if (stack->size_a <= 3)
-		three_sort_algo(stack);
-	else if (stack->size_a <= 6 && stack->size_a > 3)
-		six_sort_algo(stack);
-	else if (stack->size_a > 6 && stack->size_a <= 100)
-		ten_sort_algo(stack);
+	//if (stack->size_a <= 3)
+	//	three_sort_algo(stack);
+	//else if (stack->size_a <= 6 && stack->size_a > 3)
+	//	six_sort_algo(stack);
+	//else if (stack->size_a > 6 && stack->size_a <= 100)
+	//	ten_sort_algo(stack);
 	//else
 	//	big_range_algo(stack);
+	min_max_algo(stack);
 
 
 }

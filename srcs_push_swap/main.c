@@ -6,7 +6,7 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:32:23 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/20 15:27:16 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 12:07:28 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,7 @@ int	main(int argc, char **argv)
 	//printf("argc : %d\n", argc);
 	if (argc == 1)
 		exit(0);
-	//else if (argc == 2)
-		//init_stack_args(&stack, argv[1]);
-	//else
-	//printf("argc : %d\n", argc);
-		init_stack(&stack, argc, argv);
+	init_stack(&stack, argc, argv);
 	//	int i = 0;
 	//while (i < argc)
 	//{

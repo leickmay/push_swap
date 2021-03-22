@@ -6,7 +6,7 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:32:23 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/17 15:54:52 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 11:16:06 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	get_operations(t_stack *stack)
 	char	*line;
 	char	**op;
 
-	while (get_next_line(1, &line))
+	while (get_next_line(0, &line))
 	{
 		check_line_chars(line);
 		op = ft_checker_strjoin(op, line, stack->size_list);
