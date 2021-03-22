@@ -6,7 +6,7 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 14:42:45 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/22 15:58:34 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 17:52:00 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_t_pos_a(t_stack *stack, t_pos *pos)
 	else
 		pos->min_closest = pos->min_dist_bottom;
 }
-
+#include <stdio.h>
 void	find_closest_value(t_stack *stack, t_pos_b *pos)
 {
 	int	i;
@@ -37,21 +37,24 @@ void	find_closest_value(t_stack *stack, t_pos_b *pos)
 	int	diff2;
 
 	i = 0;
-	diff2 = stack->size_b;
+	diff2 = stack->a[0] - stack->b[i];
 	pos->closest_pos = 0;
 	while (i < stack->size_b)
 	{
 		diff = stack->a[0] - stack->b[i];
+		//printf("stack->a[0] (%d) - stack->b[%d] (%d) = %d\n", stack->a[0] , i, stack->b[i], diff);
 		if (diff < 0)
 			diff *= -1;
-		if (diff < diff2)
+		if (diff <= diff2)
 		{
 			diff2 = diff;
 			pos->closest_pos = i;
+			//printf("i : %d\n", i);
 		}
 		i++;
 	}
 	pos->closest_value = stack->b[pos->closest_pos];
+	//printf("closest value : %d\n", pos->closest_value);
 }
 
 void	init_t_pos_b(t_stack *stack, t_pos_b *pos)

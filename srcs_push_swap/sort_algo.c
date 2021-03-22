@@ -6,7 +6,7 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 14:40:44 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/22 17:05:21 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/22 17:52:26 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,7 @@ void	find_slot_max(t_stack *stack)
 
 	middle = stack->size_b - (stack->size_b / 2);
 	init_t_pos_b(stack, &pos);
+	//afficher_piles(stack);
 	//printf("-- closest : pos %d value %d\n", pos.closest_pos, stack->b[pos.closest_pos]);
 	if (pos.closest_pos >= middle)
 	{
@@ -195,12 +196,12 @@ void	find_slot_max(t_stack *stack)
 			pos.closest_pos++;
 			//printf("closest : pos %d value %d\n", pos.closest_pos, stack->b[pos.closest_pos]);
 		}
-		printf("--------------------------------slot-----max\n");
-		afficher_piles(stack);
-		printf("-------\n");
-		if (stack->a[0] < pos.closest_value)
+		//printf("--------------------------------slot-----max\n");
+		//afficher_piles(stack);
+		//printf("-------\n");
+		if (stack->a[0] > pos.closest_value)
 		{
-			which_action("rb", stack);
+			which_action("rrb", stack);
 			pos.closest_pos = 0;
 		}
 	}
@@ -212,20 +213,20 @@ void	find_slot_max(t_stack *stack)
 			pos.closest_pos--;
 			//printf("-->closest : pos %d value %d\n", pos.closest_pos, stack->b[pos.closest_pos]);
 		}
-			printf("--------------------------------slotmax\n");
-		afficher_piles(stack);
-		printf("-------\n");
-		if (stack->a[0] > pos.closest_value)
+		//	printf("--------------------------------slotmax\n");
+		//afficher_piles(stack);
+		//printf("-------\n");
+		if (stack->a[0] < pos.closest_value)
 		{
-			which_action("rrb", stack);
+			which_action("rb", stack);
 			pos.closest_pos = stack->size_b - 1;
 		}
 	}
-	printf("Max : pos %d, value %d, dist_bottom %d, closest : %d\n", pos.max_pos, pos.max_value, pos.max_dist_bottom, pos.max_closest);
-	printf("Min : pos %d, value %d, dist_bottom %d, closest : %d\n", pos.min_pos, pos.min_value, pos.min_dist_bottom, pos.min_closest);
-	printf("closest : pos %d value %d\n", pos.closest_pos, stack->b[pos.closest_pos]);
-	printf("a[0] : %d\n", stack->a[0]);
-	afficher_piles(stack);
+	//printf("Max : pos %d, value %d, dist_bottom %d, closest : %d\n", pos.max_pos, pos.max_value, pos.max_dist_bottom, pos.max_closest);
+	//printf("Min : pos %d, value %d, dist_bottom %d, closest : %d\n", pos.min_pos, pos.min_value, pos.min_dist_bottom, pos.min_closest);
+	//printf("closest : pos %d value %d\n", pos.closest_pos, stack->b[pos.closest_pos]);
+	//printf("a[0] : %d\n", stack->a[0]);
+	
 }
 
 void	push_min(t_stack *stack, t_pos *pos)
@@ -258,6 +259,7 @@ void	push_min(t_stack *stack, t_pos *pos)
 	if (stack->size_b > 1)
 		find_slot_max(stack);
 	which_action("pb", stack);
+	//afficher_piles(stack);
 }
 
 void	push_max(t_stack *stack, t_pos *pos)
@@ -290,6 +292,7 @@ void	push_max(t_stack *stack, t_pos *pos)
 	if (stack->size_b > 1)
 		find_slot_max(stack);
 	which_action("pb", stack);
+	//afficher_piles(stack);
 }
 
 void	push_values_end(t_stack *stack, t_pos *pos)
@@ -335,7 +338,7 @@ void	min_max_algo(t_stack *stack)
 	}
 	while (stack->size_b > 0)
 	{
-		which_action("rrb", stack);
+		//which_action("rrb", stack);
 		which_action("pa", stack);
 	}
 	//afficher_piles(stack);
@@ -346,5 +349,5 @@ void	min_max_algo(t_stack *stack)
 	//	which_action("rrb", stack);
 	//	which_action("pa", stack);
 	//}
-	afficher_piles(stack);
+	//afficher_piles(stack);
 }
