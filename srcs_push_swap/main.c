@@ -40,17 +40,25 @@ void	init_median(t_stack *stack)
 
 	tab = ft_array_dup(stack->a, stack->size_a);
 	ft_sort_int_tab(tab, stack->size_a);
-	int i = 0;
-	while (i < stack->size_a)
-	{
-		printf("%d, ", tab[i]);
-		i++;
-	}
+	//int i = 0;
+	//while (i < stack->size_a)
+	//{
+	//	printf("%d, ", tab[i]);
+	//	i++;
+	//}
+	//i = 0;
+	//printf("\n");
+	//while (i < stack->size_a)
+	//{
+	//	printf("%d, ", stack->a[i]);
+	//	i++;
+	//}
+	//printf("\n");
 	stack->median = tab[stack->size_a / 2];
-	printf("median %d\n", stack->median);
+	//printf("median %d\n", stack->median);
 	stack->quarter = tab[stack->size_a / 4];
 	stack->quarter3 = tab[stack->size_a - stack->size_a / 4];
-	printf("quarter : %d\nquarter3 : %d\n", stack->quarter, stack->quarter3);
+	//printf("quarter : %d\nquarter3 : %d\n", stack->quarter, stack->quarter3);
 	free(tab);
 }
 
