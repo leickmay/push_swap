@@ -6,7 +6,7 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 11:17:57 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/22 14:37:19 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 16:37:22 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,8 +163,9 @@ void	sort_instructions(t_stack *stack)
 	//	ten_sort_algo(stack);
 	//else
 	//	big_range_algo(stack);
-	min_max_algo(stack);
-
+	//min_max_algo(stack);
+	//min_max_algo_i(stack);
+	test_sort(stack);
 
 }
 

@@ -6,7 +6,7 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 10:43:59 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/17 15:59:05 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 13:21:40 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,7 @@ void			ft_putstr(char *str);
 void			ft_putnbr(int n);
 char			*ft_itoa_base(int nb, char *base);
 int				ft_strcmp(const char *s1, const char *s2);
+void			ft_sort_int_tab(int *tab, int size);
+int				*ft_array_dup(int *array, int size);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 14:42:45 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/22 17:52:00 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 14:00:25 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_t_pos_a(t_stack *stack, t_pos *pos)
 	else
 		pos->min_closest = pos->min_dist_bottom;
 }
-#include <stdio.h>
+
 void	find_closest_value(t_stack *stack, t_pos_b *pos)
 {
 	int	i;

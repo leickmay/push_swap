@@ -6,7 +6,7 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:15:25 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/22 14:54:42 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/23 16:36:38 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ typedef struct s_stacks
 	char	**op;
 	int		*big_tab;
 	int		*small_tab;
+	int		min;
+	int		median;
+	int		quarter;
+	int		quarter3;
 }				t_stack;
 
 typedef struct s_pos
@@ -39,6 +43,8 @@ typedef struct s_pos
 	int	max_value;
 	int	max_dist_bottom;
 	int	max_closest;
+	int	median_value;
+	int	median_pos;
 }				t_pos;
 
 typedef struct s_pos_b
@@ -104,5 +110,12 @@ void	two_reverse_sort_b(t_stack *stack);
 void	min_max_algo(t_stack *stack);
 void	init_t_pos_a(t_stack *stack, t_pos *pos);
 void	init_t_pos_b(t_stack *stack, t_pos_b *pos);
+void	find_closest_value(t_stack *stack, t_pos_b *pos);
+void	min_max_algo_i(t_stack *stack);
+void	push_values_end_i(t_stack *stack, t_pos *pos);
+void	push_max_i(t_stack *stack, t_pos *pos);
+void	push_min_i(t_stack *stack, t_pos *pos);
+void	find_slot_max_i(t_stack *stack);
+void	test_sort(t_stack *stack);
 
 #endif
