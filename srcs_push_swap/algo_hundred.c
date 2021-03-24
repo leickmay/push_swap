@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   algo_hundred.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/24 10:26:46 by leickmay          #+#    #+#             */
+/*   Updated: 2021/03/24 10:41:23 by leickmay         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
+
 #include <stdio.h>
 
 void	push_max_b_on_a(t_stack *stack)
@@ -29,34 +42,7 @@ void	push_max_b_on_a(t_stack *stack)
 	}
 }
 
-void	set_last_push(t_stack *stack, int last_push)
-{
-	int	i;
-
-	i = 0;
-	while (i < stack->size_a && stack->a[i] != last_push)
-		i++;
-	printf("i : %d\n", i);
-	if (i >= stack->size_a / 2)
-	{
-		while (i < stack->size_a)
-		{
-			which_action("rra", stack);
-			i++;
-		}
-	}
-	else
-	{
-		while (i > 0)
-		{
-			which_action("ra", stack);
-			i--;
-		}
-	}
-
-}
-
-void	test_sort(t_stack *stack)
+void	hundred_sort(t_stack *stack)
 {
 	//printf("median : %d\n", stack->median);
 	int	half;

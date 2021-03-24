@@ -6,7 +6,7 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:32:23 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/23 17:33:12 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 15:39:32 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,18 @@ void	init_median(t_stack *stack)
 
 	tab = ft_array_dup(stack->a, stack->size_a);
 	ft_sort_int_tab(tab, stack->size_a);
+	stack->median = tab[stack->size_a / 2];
+	stack->quarter = tab[stack->size_a / 4];
+	stack->quarter3 = tab[stack->size_a - stack->size_a / 4];
+	free(tab);
+}
+
+void	init_decile(t_stack *stack)
+{
+	int	*tab;
+
+	tab = ft_array_dup(stack->a, stack->size_a);
+	ft_sort_int_tab(tab, stack->size_a);
 	//int i = 0;
 	//while (i < stack->size_a)
 	//{
@@ -54,11 +66,30 @@ void	init_median(t_stack *stack)
 	//	i++;
 	//}
 	//printf("\n");
-	stack->median = tab[stack->size_a / 2];
-	//printf("median %d\n", stack->median);
-	stack->quarter = tab[stack->size_a / 4];
-	stack->quarter3 = tab[stack->size_a - stack->size_a / 4];
-	//printf("quarter : %d\nquarter3 : %d\n", stack->quarter, stack->quarter3);
+	stack->decile1 = tab[stack->size_a / 10 - 1];
+	stack->decile2 = tab[stack->size_a / 10 * 2 - 1];
+	stack->decile3 = tab[stack->size_a / 10 * 3 - 1];
+	stack->decile4 = tab[stack->size_a / 10 * 4 - 1];
+	stack->decile5 = tab[stack->size_a / 10 * 5 - 1];
+	stack->decile6 = tab[stack->size_a / 10 * 6 - 1];
+	stack->decile7 = tab[stack->size_a / 10 * 7 - 1];
+	stack->decile8 = tab[stack->size_a / 10 * 8 - 1];
+	stack->decile9 = tab[stack->size_a / 10 * 9 - 1];
+	stack->decile10 = tab[stack->size_a / 10 * 10 - 1];
+	//printf("---DECILES---\n");
+	//printf("1 : %d\n", stack->decile1);
+	//printf("2 : %d\n", stack->decile2);
+	//printf("3 : %d\n", stack->decile3);
+	//printf("4 : %d\n", stack->decile4);
+	//printf("5 : %d\n", stack->decile5);
+	//printf("6 : %d\n", stack->decile6);
+	//printf("7 : %d\n", stack->decile7);
+	//printf("8 : %d\n", stack->decile8);
+	//printf("9 : %d\n", stack->decile9);
+	//printf("10 : %d\n", stack->decile10);
+	
+	
+
 	free(tab);
 }
 
@@ -85,6 +116,7 @@ int	main(int argc, char **argv)
 	//	i++;
 	//}
 	init_median(&stack);
+	init_decile(&stack);
 	sort_instructions(&stack);
 	//get_operations(&stack);
 	//make_operations(&stack);

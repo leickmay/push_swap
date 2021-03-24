@@ -6,12 +6,12 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 14:19:12 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/23 16:04:32 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 15:44:29 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
+/*
 void	find_slot_max_i(t_stack *stack)
 {
 	t_pos_b pos;
@@ -150,4 +150,4 @@ void	min_max_algo_i(t_stack *stack)
 		which_action("pa", stack);
 	init_t_pos_a(stack, &pos);
 	push_values_end_i(stack, &pos);
-}
+}*/

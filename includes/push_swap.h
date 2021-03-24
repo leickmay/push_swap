@@ -6,7 +6,7 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 16:15:25 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/23 16:36:38 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 14:56:00 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,16 @@ typedef struct s_stacks
 	int		median;
 	int		quarter;
 	int		quarter3;
+	int		decile1;
+	int		decile2;
+	int		decile3;
+	int		decile4;
+	int		decile5;
+	int		decile6;
+	int		decile7;
+	int		decile8;
+	int		decile9;
+	int		decile10;
 }				t_stack;
 
 typedef struct s_pos
@@ -116,6 +126,10 @@ void	push_values_end_i(t_stack *stack, t_pos *pos);
 void	push_max_i(t_stack *stack, t_pos *pos);
 void	push_min_i(t_stack *stack, t_pos *pos);
 void	find_slot_max_i(t_stack *stack);
-void	test_sort(t_stack *stack);
+void	hundred_sort(t_stack *stack);
+void	huge_sort(t_stack *stack);
+void	push_max_b_on_a(t_stack *stack);
+void	set_last_push(t_stack *stack, int last_push);
+void	giga_huge_sort(t_stack *stack);
 
 #endif

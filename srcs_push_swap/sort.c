@@ -6,7 +6,7 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 11:17:57 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/23 16:37:22 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 15:44:04 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,20 +155,22 @@ afficher_piles(stack);
 
 void	sort_instructions(t_stack *stack)
 {
-	//if (stack->size_a <= 3)
-	//	three_sort_algo(stack);
-	//else if (stack->size_a <= 6 && stack->size_a > 3)
-	//	six_sort_algo(stack);
-	//else if (stack->size_a > 6 && stack->size_a <= 100)
+	if (stack->size_a <= 3)
+		three_sort_algo(stack);
+	else if (stack->size_a <= 6 && stack->size_a > 3)
+		six_sort_algo(stack);
+	else if (stack->size_a > 6 && stack->size_a < 90)
+		min_max_algo(stack);
+	else if (stack->size_a >= 90 && stack->size_a < 250)
+		huge_sort(stack);
+	else if (stack->size_a >= 250)
+		giga_huge_sort(stack);
 	//	ten_sort_algo(stack);
 	//else
 	//	big_range_algo(stack);
-	//min_max_algo(stack);
+	//
 	//min_max_algo_i(stack);
-	test_sort(stack);
-
+	//hundred_sort(stack);
+	
+	//
 }
-
-
-//sort 10 ~ 46
-//sort 100 ~ 1600
