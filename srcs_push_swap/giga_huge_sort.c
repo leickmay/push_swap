@@ -6,7 +6,7 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 14:43:48 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/24 15:17:42 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 15:51:58 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,26 @@ void	last_decile(t_stack *stack)
 	push_max_b_on_a(stack);
 }
 
+void	giga_decile_sort(t_stack *stack)
+{
+	decile_sort(stack, stack->decile9, stack->decile10);
+	decile_sort(stack, stack->decile8, stack->decile9);
+	decile_sort(stack, stack->decile7, stack->decile8);
+	decile_sort(stack, stack->decile6, stack->decile7);
+	decile_sort(stack, stack->decile5, stack->decile6);
+	decile_sort_r(stack, stack->decile4, stack->decile5);
+	decile_sort_r(stack, stack->decile3, stack->decile4);
+	decile_sort_r(stack, stack->decile2, stack->decile3);
+	decile_sort_r(stack, stack->decile1, stack->decile2);
+	last_decile(stack);
+}
+
 void	giga_huge_sort(t_stack *stack)
 {
 	int	to_sort;
 	int	i;
 
 	to_sort = stack->size_a - (stack->size_a / 10 * 10) + 1;
-	//printf("to_sort : %d --- %d --- size : %d\n", to_sort, (stack->size_a / 10 * 10 - 1), stack->size_a);
 	i = 0;
 	while (i < to_sort)
 	{
@@ -102,18 +115,6 @@ void	giga_huge_sort(t_stack *stack)
 			which_action("ra", stack);
 	}
 	push_max_b_on_a(stack);
-	//afficher_piles(stack);
 	to_sort = stack->size_a / 10;
-	//printf("to_sort : %d\n", to_sort);
-	decile_sort(stack, stack->decile9, stack->decile10);
-	decile_sort(stack, stack->decile8, stack->decile9);
-	decile_sort(stack, stack->decile7, stack->decile8);
-	decile_sort(stack, stack->decile6, stack->decile7);
-	decile_sort(stack, stack->decile5, stack->decile6);
-	decile_sort_r(stack, stack->decile4, stack->decile5);
-	decile_sort_r(stack, stack->decile3, stack->decile4);
-	decile_sort_r(stack, stack->decile2, stack->decile3);
-	decile_sort_r(stack, stack->decile1, stack->decile2);
-	last_decile(stack);
-	//afficher_piles(stack);
+	giga_decile_sort(stack);
 }

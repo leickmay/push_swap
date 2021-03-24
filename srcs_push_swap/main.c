@@ -6,33 +6,11 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/12 13:32:23 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/24 15:39:32 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 17:10:43 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-/**********DEBUG********************/
-#include <stdio.h>
-/**********DEBUG********************/
-/**********DEBUG********************/
-void	display_stack(t_stack *stack)
-{
-	int i = 0;
-	printf("pile a :\n");
-	while (i < stack->size_a)
-	{
-		printf("i : %d -> %d\n", i, stack->a[i]);
-		i++;
-	}
-	printf("pile b :\n");
-	i = 0;
-	while (i < stack->size_b)
-	{
-		printf("i : %d -> %d\n", i, stack->b[i]);
-		i++;
-	}
-}
-/**********DEBUG********************/
 
 void	init_median(t_stack *stack)
 {
@@ -52,20 +30,6 @@ void	init_decile(t_stack *stack)
 
 	tab = ft_array_dup(stack->a, stack->size_a);
 	ft_sort_int_tab(tab, stack->size_a);
-	//int i = 0;
-	//while (i < stack->size_a)
-	//{
-	//	printf("%d, ", tab[i]);
-	//	i++;
-	//}
-	//i = 0;
-	//printf("\n");
-	//while (i < stack->size_a)
-	//{
-	//	printf("%d, ", stack->a[i]);
-	//	i++;
-	//}
-	//printf("\n");
 	stack->decile1 = tab[stack->size_a / 10 - 1];
 	stack->decile2 = tab[stack->size_a / 10 * 2 - 1];
 	stack->decile3 = tab[stack->size_a / 10 * 3 - 1];
@@ -76,20 +40,6 @@ void	init_decile(t_stack *stack)
 	stack->decile8 = tab[stack->size_a / 10 * 8 - 1];
 	stack->decile9 = tab[stack->size_a / 10 * 9 - 1];
 	stack->decile10 = tab[stack->size_a / 10 * 10 - 1];
-	//printf("---DECILES---\n");
-	//printf("1 : %d\n", stack->decile1);
-	//printf("2 : %d\n", stack->decile2);
-	//printf("3 : %d\n", stack->decile3);
-	//printf("4 : %d\n", stack->decile4);
-	//printf("5 : %d\n", stack->decile5);
-	//printf("6 : %d\n", stack->decile6);
-	//printf("7 : %d\n", stack->decile7);
-	//printf("8 : %d\n", stack->decile8);
-	//printf("9 : %d\n", stack->decile9);
-	//printf("10 : %d\n", stack->decile10);
-	
-	
-
 	free(tab);
 }
 
@@ -97,36 +47,15 @@ int	main(int argc, char **argv)
 {
 	t_stack	stack;
 
-	//printf("%s\n", argv[1]);
-	//printf("argc : %d\n", argc);
 	if (argc == 1)
 		exit(0);
 	init_stack(&stack, argc, argv);
-	//	int i = 0;
-	//while (i < argc)
-	//{
-	//	printf("argv[%d] = %s\n", i, argv[i]);
-	//	i++;
-	//}
-	//display_stack(&stack);
-	//int i = 0;
-	//while (i < stack.size_a)
-	//{
-	//	printf("%d\n", stack.a[i]);
-	//	i++;
-	//}
+	if (check_sorted(&stack))
+		return (0);
 	init_median(&stack);
 	init_decile(&stack);
 	sort_instructions(&stack);
-	//get_operations(&stack);
-	//make_operations(&stack);
-	//display_stack(&stack);
-	stack.sorted = check_sorted(&stack);
-	//printf("is sorted : %d\n", stack.sorted);
-	//afficher_piles(&stack);
-	//free(stack.a);
-	//free(stack.b);
-	//free(stack.big_tab);
-	
+	free(stack.a);
+	free(stack.b);
 	return (0);
 }

@@ -6,13 +6,12 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 15:49:02 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/22 12:07:09 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 16:03:33 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-#include <stdio.h>
 void	fill_stack(char **argv, t_stack *stack)
 {
 	int		i;
@@ -41,5 +40,3 @@ void	init_stack(t_stack *stack, int argc, char **argv)
 	stack->sorted = 0;
 	fill_stack(argv, stack);
 }
-
-

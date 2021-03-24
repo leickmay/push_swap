@@ -6,11 +6,58 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 14:42:45 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/23 14:00:25 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 16:30:41 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+void	push_values_end(t_stack *stack, t_pos *pos)
+{
+	if (pos->max_dist_bottom > pos->max_pos)
+	{
+		while (pos->max_pos >= 0)
+		{
+			which_action("ra", stack);
+			pos->max_pos--;
+		}
+	}
+	else
+	{
+		while (pos->max_dist_bottom > 1)
+		{
+			which_action("rra", stack);
+			pos->max_dist_bottom--;
+		}
+	}
+}
+
+void	push_max_b_on_a(t_stack *stack)
+{
+	int	big;
+
+	while (stack->size_b > 0)
+	{
+		big = find_biggest_b(stack);
+		if (big > stack->size_b / 2)
+		{
+			while (big < stack->size_b)
+			{
+				which_action("rrb", stack);
+				big++;
+			}
+		}
+		else
+		{
+			while (big > 0)
+			{
+				which_action("rb", stack);
+				big--;
+			}
+		}
+		which_action("pa", stack);
+	}
+}
 
 void	init_t_pos_a(t_stack *stack, t_pos *pos)
 {
@@ -42,19 +89,16 @@ void	find_closest_value(t_stack *stack, t_pos_b *pos)
 	while (i < stack->size_b)
 	{
 		diff = stack->a[0] - stack->b[i];
-		//printf("stack->a[0] (%d) - stack->b[%d] (%d) = %d\n", stack->a[0] , i, stack->b[i], diff);
 		if (diff < 0)
 			diff *= -1;
 		if (diff <= diff2)
 		{
 			diff2 = diff;
 			pos->closest_pos = i;
-			//printf("i : %d\n", i);
 		}
 		i++;
 	}
 	pos->closest_value = stack->b[pos->closest_pos];
-	//printf("closest value : %d\n", pos->closest_value);
 }
 
 void	init_t_pos_b(t_stack *stack, t_pos_b *pos)

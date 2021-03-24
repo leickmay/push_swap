@@ -6,15 +6,29 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 14:15:26 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/23 14:17:02 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 16:30:36 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
+void	find_slot_max_else(t_stack *stack, t_pos_b *pos)
+{
+	while (pos->closest_pos > 0)
+	{
+		which_action("rb", stack);
+		pos->closest_pos--;
+	}
+	if (stack->a[0] < pos->closest_value)
+	{
+		which_action("rb", stack);
+		pos->closest_pos = stack->size_b - 1;
+	}
+}
+
 void	find_slot_max(t_stack *stack)
 {
-	t_pos_b pos;
+	t_pos_b	pos;
 	int		middle;
 
 	middle = stack->size_b - (stack->size_b / 2);
@@ -33,18 +47,7 @@ void	find_slot_max(t_stack *stack)
 		}
 	}
 	else
-	{
-		while (pos.closest_pos > 0)
-		{
-			which_action("rb", stack);
-			pos.closest_pos--;
-		}
-		if (stack->a[0] < pos.closest_value)
-		{
-			which_action("rb", stack);
-			pos.closest_pos = stack->size_b - 1;
-		}
-	}
+		find_slot_max_else(stack, &pos);
 }
 
 void	push_min(t_stack *stack, t_pos *pos)
@@ -91,26 +94,6 @@ void	push_max(t_stack *stack, t_pos *pos)
 	if (stack->size_b > 1)
 		find_slot_max(stack);
 	which_action("pb", stack);
-}
-
-void	push_values_end(t_stack *stack, t_pos *pos)
-{
-	if (pos->max_dist_bottom > pos->max_pos)
-	{
-		while (pos->max_pos >= 0)
-		{
-			which_action("ra", stack);
-			pos->max_pos--;
-		}
-	}
-	else
-	{
-		while (pos->max_dist_bottom > 1)
-		{
-			which_action("rra", stack);
-			pos->max_dist_bottom--;
-		}
-	}
 }
 
 void	min_max_algo(t_stack *stack)

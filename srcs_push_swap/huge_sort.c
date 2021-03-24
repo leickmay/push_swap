@@ -6,7 +6,7 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 10:26:48 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/24 14:42:55 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/24 15:53:14 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	set_last_push(t_stack *stack, int last_push)
 	i = 0;
 	while (i < stack->size_a && stack->a[i] != last_push)
 		i++;
-	//printf("i : %d\n", i);
 	if (i >= stack->size_a / 2)
 	{
 		while (i < stack->size_a)
@@ -38,7 +37,6 @@ void	set_last_push(t_stack *stack, int last_push)
 			i--;
 		}
 	}
-
 }
 
 int	quarter_two(t_stack *stack, int quarter)

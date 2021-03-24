@@ -5,9 +5,9 @@ SRCS_C		=	srcs_checker/check_args.c srcs_checker/main.c srcs_checker/operations.
 
 SRCS_P		=	srcs_push_swap/check_args.c srcs_push_swap/main.c srcs_push_swap/operations.c \
 				srcs_push_swap/operations_bis.c srcs_push_swap/operations_ter.c srcs_push_swap/stack.c \
-				srcs_push_swap/sort.c srcs_push_swap/little_range_algo.c srcs_push_swap/sort_algo.c \
-				srcs_push_swap/sort_utils.c srcs_push_swap/min_max_algo.c srcs_push_swap/min_max_improved.c \
-				srcs_push_swap/algo_hundred.c srcs_push_swap/huge_sort.c srcs_push_swap/giga_huge_sort.c
+				srcs_push_swap/sort.c srcs_push_swap/little_range_algo.c  \
+				srcs_push_swap/sort_utils.c srcs_push_swap/min_max_algo.c \
+				 srcs_push_swap/huge_sort.c srcs_push_swap/giga_huge_sort.c srcs_push_swap/sort_utils_bis.c
 
 
 LIBFT		=	libft.a
