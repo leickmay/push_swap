@@ -6,7 +6,7 @@
 /*   By: leickmay <leickmay@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 13:38:09 by leickmay          #+#    #+#             */
-/*   Updated: 2021/03/18 10:49:05 by leickmay         ###   ########lyon.fr   */
+/*   Updated: 2021/03/25 12:47:36 by leickmay         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,14 @@ void	check_argv(char *argv)
 	{
 		if (ft_isdigit(argv[i]) == 0)
 		{
-			if (i != 0 || argv[0] != '-')
+			if (i == 0)
+			{
+				if (argv[i] != '-')
+					ft_error();
+				if (argv[i + 1] == '\0')
+					ft_error();
+			}
+			else
 				ft_error();
 		}
 		i++;
